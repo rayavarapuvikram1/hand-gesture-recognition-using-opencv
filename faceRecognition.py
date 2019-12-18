@@ -141,11 +141,10 @@ try:
         morphedFrame = cv2.medianBlur(morphedFrame, 5)
 
 #        find contours
-        contoursVec, hierarchy = cv2.findContours(
-            morphedFrame.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        maxContour = getMaxContour(contoursVec)
-        origContouredFrame = frame.copy()
-        cv2.drawContours(origContouredFrame, maxContour, -1, (0, 122, 122), 3)
+        contoursVec, hierarchy = cv2.findContours(morphedFrame.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)  
+        maxContour=getMaxContour(contoursVec);
+        origContouredFrame=frame.copy()
+        cv2.drawContours(origContouredFrame, maxContour, -1, (0,122,122), 3)
         hull = cv2.convexHull(maxContour)
 
         topMostPoint = []
@@ -235,9 +234,8 @@ try:
         roiFrameColored = frame[roiTopLeftRowNum:roiBottomRightRowNum,
                                 roiTopLeftColNum:roiBottomRightColNum, :].copy()
 # contour extraction on ROI
-        contoursVec, hierarchy = cv2.findContours(
-            roiFrame.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        maxContour = getMaxContour(contoursVec)
+        contoursVec, hierarchy = cv2.findContours(roiFrame.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)  
+        maxContour=getMaxContour(contoursVec);
 # finding max inscribed circle
         maxInscrbdCirclCenterCoord, maxInscrbdCirclRadius = get_palm_circle(
             maxContour, roiFrame)
